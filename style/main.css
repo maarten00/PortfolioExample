@@ -1,7 +1,19 @@
 body {
 	width: 1000px;
+	background-color: #e5e5e5;
+	margin: 0 auto 0 auto;
 }
 
 nav {
-	height: 50px;
+	height: 30px;
+}
+
+h3{
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+article{
+	margin-bottom: 10px;
+	background-color: #c4c3c3;
 }

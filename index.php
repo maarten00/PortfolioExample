@@ -14,7 +14,7 @@
 		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="shortcut icon" href="img/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="stylesheet" href="style/main.css" />
 		<script src="scripts/functions.js"></script>
@@ -22,7 +22,6 @@
 	</head>
 
 	<body onload="attachHandlers()">
-		<div>
 			<header>
 				<h1>Portfolio Example</h1>
 			</header>
@@ -31,11 +30,10 @@
 				<a href="/contact">Contact</a>
 			</nav>
 
-			<div id = examples>
+			<section class='examples'>
 				Hier komen de voorbeelden van gemaakte websites.<br />
 				<a id="getAllExamples">Haal voorbeelden op</a>
-			</div>
-
+			</section>
 			<footer>
 				<p>
 					&copy; Copyright  by Maarten

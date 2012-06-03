@@ -32,10 +32,22 @@ function getAllExamples() {
 }
 
 function drawExamples(inputData) {
-	$examples =  $('#examples');
-	$examples.empty();
+	formatExamples();
+	$examples =  $('.examples');
 	for(i in inputData){
-		$examples.append(inputData[i]["title"]);
-		$examples.append("<br />")
-	}		
+		$article = $('<article id="example' + inputData[i]["id"] + '">')
+		$examples.append($article);
+		$article.append('<h4>' + inputData[i]["title"]);
+		$article.append('<img src="' + inputData[i]["imgUrl"] + '" alt="exampleImg">');
+		$article.append('<p class="description">' + inputData[i]["description"]);
+	}	
+	
 }
+
+function formatExamples(){
+	$examples =  $('.examples');
+	$examples.empty();
+	$examples.append('<header><h3>Examples</h3></header>');
+}
+
+
