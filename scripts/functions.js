@@ -18,6 +18,7 @@ function getXmlHttpRequestObject() {
 function getAllExamples() {
 	var params = "method=getAllExamples";
 	$.ajax({
+		type: "GET",
 		url : "backend/getExamples.php?" + params,
 		beforeSend : function(xhr) {
 			xhr.overrideMimeType("text/plain; charset=x-user-defined");

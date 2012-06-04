@@ -40,14 +40,15 @@ if (isset($_SESSION["user"])) {
 		</header>
 		<nav>
 			<a href="/">Home</a>
-			
-			<a href="/contact">Contact</a>
 		</nav>
-		<section class='examples'>
-			Hier komen de voorbeelden van gemaakte websites.
-			<br />
-			<a id="getAllExamples">Haal voorbeelden op</a>
-		</section>
+		<div class='login-form'>
+			<h1>Login Form</h1>
+			<form action="backend/checkcredentials.php" method="post">
+				<input type="text" name="username" placeholder="username">
+				<input type="password" name="password" placeholder="password">
+				<input type="submit" value="Login">
+			</form>
+		</div>
 		<footer>
 			<p>
 				&copy; Copyright  by Maarten
