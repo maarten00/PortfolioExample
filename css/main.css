@@ -1,0 +1,56 @@
+/*
+ * Start of body section
+ */
+body {
+	width: 1000px;
+	background-color: #e5e5e5;
+	margin: 0 auto 0 auto;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+}
+
+nav {
+	height: 30px;
+	margin:0px;
+}
+
+.loggedInMsg{
+	width: 210px;
+	float: right;
+	margin: 0px;
+	text-align: right;
+}
+
+a{
+	
+}
+
+/*
+ * Start of example section
+ */
+article{
+	margin-bottom: 10px;
+	background-color: #c4c3c3;
+}
+
+
+section.examples{
+	clear:both;
+}
+
+section.h3{
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+.exampleDate{
+	float:right;
+	margin-top: -40px;
+}
+
+.exampleTitle{
+	width: 500px;
+	margin-top: 0px;
+}
+
+
