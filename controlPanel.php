@@ -1,5 +1,4 @@
 <?PHP
-session_start();
 if (isset($_SESSION["user"])) {
 	$user = $_SESSION["user"];
 }
@@ -9,7 +8,8 @@ if (isset($_SESSION["user"])) {
 	<head>
 		<title>Portfolio Example - CP</title>
 		<?PHP
-	include 'backend/headers.xhtml';
+			include 'backend/headers.xhtml';
+			include 'backend/session.php';
 		?>
 	</head>
 
@@ -43,12 +43,3 @@ if (isset($_SESSION["user"])) {
 		</div>
 	</body>
 </html>
-<?PHP
-	function checkLogin() {
-		if (isset($_SESSION["user"])) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-?>
