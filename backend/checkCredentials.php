@@ -1,4 +1,6 @@
 <?PHP
+include 'hashGenerator.php';
+
 /* Create a new mysqli object with database connection parameters */
 $username = 'loginClient';
 $password = 'dN3feQySzuUmNScp';
@@ -10,9 +12,9 @@ if (mysqli_connect_errno()) {
 	exit();
 }
 
-$user = $_POST['username']; 
+$user = $_POST['username'];
 $pass = $_POST['password'];
-$encrPass = sha1($pass);
+$encrPass = hashSSha($pass);
 
 /* Create a prepared statement */
 if ($stmt = $mysqli -> prepare("SELECT username, password FROM users WHERE username=?
