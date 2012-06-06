@@ -1,5 +1,4 @@
 <?PHP
-session_start();
 if (isset($_SESSION["user"])) {
 	$user = $_SESSION["user"];
 }
@@ -10,6 +9,7 @@ if (isset($_SESSION["user"])) {
 		<title>Portfolio Example</title>
 		<?PHP
 			include 'backend/headers.xhtml';
+			include 'backend/session.php';
 		?>
 	</head>
 
@@ -19,6 +19,7 @@ if (isset($_SESSION["user"])) {
 			echo '<p class="loggedInMsg"> Ingelogd als: ';
 			echo $user;
 			echo '<br /><a href="backend/logout.php">Uitloggen</a></p>';
+			
 		}
 		?>
 		<header>
@@ -26,6 +27,7 @@ if (isset($_SESSION["user"])) {
 		</header>
 		<nav>
 			<a href="">Home</a>
+			<a id='checkSession'>Check Session</a>
 			<a href="contact">Contact</a>
 		</nav>
 		<?PHP
@@ -37,11 +39,6 @@ if (isset($_SESSION["user"])) {
 			Hier komen de voorbeelden van gemaakte websites.
 			<br />
 			<a id="getAllExamples">Haal voorbeelden op</a>
-			<?PHP
-				if (checkLogin()) {
-
-				}
-			?>
 		</section>
 		<footer>
 			<p>
@@ -51,12 +48,3 @@ if (isset($_SESSION["user"])) {
 		</div>
 	</body>
 </html>
-<?PHP
-	function checkLogin() {
-		if (isset($_SESSION["user"])) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-?>
