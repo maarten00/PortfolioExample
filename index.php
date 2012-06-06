@@ -30,7 +30,7 @@ if (isset($_SESSION["user"])) {
 		</nav>
 		<?PHP
 			if (checkLogin()) {
-				echo '<a href="" class="btn add">Add</a>';
+				echo '<a id="btnAdd" class="btn add">Add</a>';
 			}
 		?>
 		<section class='examples'>

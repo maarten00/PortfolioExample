@@ -2,53 +2,60 @@ function attachHandlers() {
 	$('#getAllExamples').click(function() {
 		getAllExamples();
 	});
+	$('#btnAdd').click(function() {
+		postExample();
+	});
 }
-
-function getXmlHttpRequestObject() {
-	if(window.XMLHttpRequest) {
-		return new XMLHttpRequest();
-	} else {
-		if(window.ActiveXObject) {
-			return new ActiveXObject("Microsoft.XMLHTTP");
-		}
-	}
-}
-
 
 function getAllExamples() {
 	var params = "method=getAllExamples";
 	$.ajax({
-		type: "GET",
+		type : "GET",
 		url : "backend/getExamples.php?" + params,
 		beforeSend : function(xhr) {
 			xhr.overrideMimeType("text/plain; charset=x-user-defined");
 		}
 	}).done(function(data) {
-		if(console && console.log) {
-			responseArray = eval("(" + data+ ")");
+		if (console && console.log) {
+			responseArray = eval("(" + data + ")");
 			console.log(responseArray);
 			drawExamples(responseArray);
 		}
 	});
 }
 
-function drawExamples(inputData) {
-	formatExamples();
-	$examples =  $('.examples');
-	for(i in inputData){
-		$article = $('<article id="example' + inputData[i]["id"] + '">')
-		$examples.append($article);
-		$article.append('<h4>' + inputData[i]["title"]);
-		$article.append('<img src="' + inputData[i]["imgUrl"] + '" alt="exampleImg">');
-		$article.append('<p class="description">' + inputData[i]["description"]);
-	}	
-	
+function postExample() {
+	var params = "method=postExample";
+	$.ajax({
+		type : "POST",
+		url : "backend/postExample.php?" + params,
+		data : {
+			title : "Title for new example",
+			description : "Description for new example",
+			imgUrl : "img/example.png",
+			exampleDate : "2012-06-06"
+		}
+	}).done(function() {
+		console.log("Data Saved");
+	});
 }
 
-function formatExamples(){
-	$examples =  $('.examples');
+function drawExamples(inputData) {
+	formatExamples();
+	$examples = $('.examples');
+	for (i in inputData) {
+		$article = $('<article id="example' + inputData[i]["id"] + '">')
+		$examples.append($article);
+		$article.append('<h4 class="exampleTitle">' + inputData[i]["title"]);
+		$article.append('<div class="exampleDate">' + inputData[i]["exampleDate"]);
+		$article.append('<img src="'+ inputData[i]["imgUrl"] +'" class ="articleImg" alt="articleImg">');
+		$article.append('<p class="description">' + inputData[i]["description"]);
+	}
+}
+
+function formatExamples() {
+	$examples = $('.examples');
 	$examples.empty();
 	$examples.append('<header><h3>Examples</h3></header>');
 }
-
 
