@@ -1,9 +1,33 @@
+/*
+ * TODO
+ * - Timer method to automatically check if session still exists every ~ seconds
+ * - 
+ */
+
 function attachHandlers() {
 	$('#getAllExamples').click(function() {
 		getAllExamples();
 	});
 	$('#btnAdd').click(function() {
 		postExample();
+	});
+	$('#checkSession').click(function() {
+		checkSession();
+	});
+}
+
+function checkSession() {
+	var params = "method=checkSession";
+	$.ajax({
+		type : "GET",
+		url : "backend/session.php?" + params,
+		beforeSend : function(xhr) {
+			xhr.overrideMimeType("text/plain; charset=x-user-defined");
+		}
+	}).done(function(data) {
+		if (console && console.log) {
+			console.log(data);
+		}
 	});
 }
 
@@ -48,7 +72,7 @@ function drawExamples(inputData) {
 		$examples.append($article);
 		$article.append('<h4 class="exampleTitle">' + inputData[i]["title"]);
 		$article.append('<div class="exampleDate">' + inputData[i]["exampleDate"]);
-		$article.append('<img src="'+ inputData[i]["imgUrl"] +'" class ="articleImg" alt="articleImg">');
+		$article.append('<img src="' + inputData[i]["imgUrl"] + '" class ="articleImg" alt="articleImg">');
 		$article.append('<p class="description">' + inputData[i]["description"]);
 	}
 }
