@@ -27,7 +27,6 @@ if (isset($_SESSION["user"])) {
 		</header>
 		<nav>
 			<a href="">Home</a>
-			<a id='checkSession'>Check Session</a>
 			<a href="contact">Contact</a>
 		</nav>
 		<?PHP
