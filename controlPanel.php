@@ -8,12 +8,12 @@ if (isset($_SESSION["user"])) {
 	<head>
 		<title>Portfolio Example - CP</title>
 		<?PHP
-			include 'backend/headers.xhtml';
+			include 'backend/headers.html';
 			include 'backend/session.php';
 		?>
 	</head>
 
-	<body onload="attachHandlers()">
+	<body onload="init()">
 		<?PHP
 		if (checkLogin()) {
 			echo '<p class="loggedInMsg"> Ingelogd als: ';

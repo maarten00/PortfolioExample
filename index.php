@@ -8,18 +8,18 @@ if (isset($_SESSION["user"])) {
 	<head>
 		<title>Portfolio Example</title>
 		<?PHP
-			include 'backend/headers.xhtml';
+			include 'backend/headers.html';
 			include 'backend/session.php';
 		?>
 	</head>
 
-	<body onload="attachHandlers()">
+	<body onload="init();getAllExamples();">
 		<?PHP
 		if (checkLogin()) {
 			echo '<p class="loggedInMsg"> Ingelogd als: ';
 			echo $user;
 			echo '<br /><a href="backend/logout.php">Uitloggen</a></p>';
-			
+
 		}
 		?>
 		<header>
@@ -35,9 +35,7 @@ if (isset($_SESSION["user"])) {
 			}
 		?>
 		<section class='examples'>
-			Hier komen de voorbeelden van gemaakte websites.
-			<br />
-			<a id="getAllExamples">Haal voorbeelden op</a>
+
 		</section>
 		<footer>
 			<p>
