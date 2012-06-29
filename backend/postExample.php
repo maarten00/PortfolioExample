@@ -8,6 +8,11 @@ if ($_REQUEST["method"] == "postExample") {
 	$exampleDate = $_POST["exampleDate"];
 
 	$query = $mysqli -> query("INSERT INTO examples (`title`, `description`, `imgUrl`, `exampleDate`) VALUES ('$title', '$description', '$imgUrl', '$exampleDate')");
-	$mysqli->query($query);
+	$mysqli -> query($query);
 }
 
+if ($_REQUEST["method"] == "deleteExample") {
+	$id = $_POST["id"];
+	$query = $mysqli -> query("DELETE FROM examples WHERE id='$id'");
+	$mysqli -> query($query);
+}
