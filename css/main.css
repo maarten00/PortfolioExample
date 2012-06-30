@@ -10,93 +10,145 @@ body {
 }
 
 nav {
-	height: 30px;
-	margin:0px;
+	height: 22px;
+	margin: 0px;
 }
 
-.loggedInMsg{
+.loggedInMsg {
 	width: 210px;
 	float: right;
 	margin: 0px;
 	text-align: right;
 }
 
-a{
+a {
 	color: black;
 	text-decoration: none;
 }
 
-a:hover{
-	color:#999999;
+a:hover {
+	color: #999999;
+}
+
+:-webkit-input-placeholder {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: italic;
+	color: #CCC;
+}
+:-moz-placeholder {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: italic;
+	color: #CCC;
+}
+:-ms-input-placeholder {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: italic;
+	color: #CCC;
 }
 
 /*
  * Start of example section
  */
-article{
+article {
 	margin-bottom: 10px;
 	background-color: #c4c3c3;
-	padding: 3px;
-	padding-left: 5px;
+	padding: 5px 5px 5px 7px;
+	border-radius: 3px;
 }
 
-.articleHeader{
+.articleHeader {
 	margin-bottom: 10px;
 }
 
-section.examples{
-	clear:both;
+section.examples {
+	clear: both;
 }
 
-section.h3{
+section.h3 {
 	margin-top: 0px;
 	margin-bottom: 10px;
 }
 
-.exampleTitle{
+.exampleTitle {
 	width: 500px;
 	margin-top: 0;
+	margin-bottom: 5px;
 }
 
-.exampleDate{
-	float:right;
-	margin-top: -33px;
+.exampleDate {
+	float: right;
+	margin-top: -23px;
 }
 
-.btnEdit{
-	margin-top: -15px;
+.btnEdit {
+	margin-top: -5px;
 	width: 20px;
 	height: 20px;
 }
 
-.btnDelete{
-	margin-top: -15px;
+.btnDelete {
+	margin-top: -5px;
 	width: 20px;
 	height: 20px;
 }
 
-.articleImg{
-	padding-top: 7px;
-}
-#newExampleFieldset{
-	width: 150px;
-	display:none;
+.articleImg {
+	padding-top: 3px;
 }
 
-#newExampleSm{
+#exampleFieldset {
+	width: 340px;
+	display: none;
+}
+
+#exampleForm label:first-of-type {
+	margin-top: 18px;
+}
+
+#exampleForm input {
+	width: 200px;
+}
+
+#exampleFormTitle {
+	margin-top: 0px;
+}
+
+#exampleFormDesc {
+	height: 100px;
+	width: 200px;
+}
+
+form label {
+	display: block;
 	float: left;
-	padding: 1px;
-	margin: 5px 0 0 5px;
+	width: 113px;
+	text-align: right;
+	margin: 6px 5px 0px 0px;
 }
 
-#newExampleForm{
+form input {
+	margin: 3px 0 1px 0;
+}
+
+#exampleFormSm {
+	padding: 1px;
+	margin-top: 5px;
+	width: 115px!important; 
+}
+
+#exampleForm {
 	text-align: left;
 }
 
-#formCloseBtn{
-	float:right;
+#formCloseBtn {
+	float: right;
 	margin-top: -10px;
 	margin-right: -6px;
+	padding: 5px;
+	clear: both;
 }
 /*
  * End of example section
