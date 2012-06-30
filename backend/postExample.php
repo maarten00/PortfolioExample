@@ -7,7 +7,20 @@ if ($_REQUEST["method"] == "postExample") {
 	$imgUrl = $_POST["imgUrl"];
 	$exampleDate = $_POST["exampleDate"];
 
-	$query = $mysqli -> query("INSERT INTO examples (`title`, `description`, `imgUrl`, `exampleDate`) VALUES ('$title', '$description', '$imgUrl', '$exampleDate')");
+	$query = $mysqli -> query("INSERT INTO examples (`title`, `description`, `imgUrl`, `exampleDate`) 
+	VALUES ('$title', '$description', '$imgUrl', '$exampleDate')");
+	$mysqli -> query($query);
+}
+
+if ($_REQUEST["method"] == "modifyExample") {
+	$id = $_POST["id"];
+	$title = $_POST["title"];
+	$description = $_POST["description"];
+	$imgUrl = $_POST["imgUrl"];
+	$exampleDate = $_POST["exampleDate"];
+
+	$query = $mysqli -> query("UPDATE examples SET title='$title', description='$description', 
+	imgUrl='$imgUrl', exampleDate = '$exampleDate' WHERE id='$id'");
 	$mysqli -> query($query);
 }
 
@@ -16,3 +29,4 @@ if ($_REQUEST["method"] == "deleteExample") {
 	$query = $mysqli -> query("DELETE FROM examples WHERE id='$id'");
 	$mysqli -> query($query);
 }
+?>
