@@ -1,8 +1,8 @@
 /*
  * TODO
- * - Reload page if user is logged out.
  * - Add support for uploading images
  * - Change the date format on form and display
+ * - Draw single example on add
  */
 
 var session;
@@ -31,8 +31,9 @@ function checkSession() {
 			xhr.overrideMimeType("text/plain; charset=x-user-defined");
 		}
 	}).done(function(data) {
-		if (console && console.log) {
-			//console.log(data);
+		console.log(data);
+		if(session == "true" && data == "false"){
+			endSession();
 		}
 		session = data;
 	});
@@ -49,11 +50,12 @@ function endSession() {
 	var params = "method=endSession";
 	$.ajax({
 		type : "GET",
-		url : "backend/session.php?" + params,
+		url : "backend/logout.php?" + params,
 		beforeSend : function(xhr) {
 			xhr.overrideMimeType("text/plain; charset=x-user-defined");
 		}
 	}).done(function(data) {
+		window.location.reload();
 	});
 }
 
@@ -171,7 +173,7 @@ function formatExamples() {
 }
 
 /*
- * Fills the examples section with an article for each seperate example
+ * Draws multiple examples to the page
  * @Param inputData
  * Data used to fill each article formatted in JSON.
  */
@@ -186,7 +188,7 @@ function drawExamples(inputData) {
 		$article.append('<div class="exampleDate">' + inputData[i]["exampleDate"]);
 		if (session == "true") {
 			$article.append('<img src="img/icons/edit.png" class="btnEdit" id="btnEdit' + inputData[i]["id"] + '" />');
-			$article.append('<img src="img/icons/delete.png" class="btnDelete" id="btnDelete' + inputData[i]["id"] + '" /><br />');
+			$article.append('<img src="img/icons/delete.png" class="btnDelete" id="btnDelete' + inputData[i]["id"] + '" /><br>');
 		}
 		$article.append('<img src="' + inputData[i]["imgUrl"] + '" class ="articleImg" alt="articleImg">');
 		$article.append('<p class="description">' + inputData[i]["description"]);
@@ -194,12 +196,24 @@ function drawExamples(inputData) {
 	attachExampleHandlers();
 }
 
+/*
+ * Redraws an example
+ * @Param id
+ * ID of the xample to be redrawn
+ */
 function redrawExample($id, $title, $desc, $imgUrl, $exampleDate){
 	$example = $('#example'+$id);
 	$example.children(".exampleTitle").text($title);
 	$example.children(".exampleDate").text($exampleDate);
 	$example.children(".description").text($desc);
 	$example.children(".articleImg").attr('src', $imgUrl);
+	
+}
+
+/*
+ * Draw a single example to the page
+ */
+function drawNewExample(){
 	
 }
 
