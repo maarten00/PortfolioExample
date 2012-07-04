@@ -10,6 +10,15 @@ if ($_REQUEST["method"] == "postExample") {
 	$query = $mysqli -> query("INSERT INTO examples (`title`, `description`, `imgUrl`, `exampleDate`) 
 	VALUES ('$title', '$description', '$imgUrl', '$exampleDate')");
 	$mysqli -> query($query);
+
+	if ($result = $mysqli -> query("SELECT MAX(ID) FROM examples")) {
+		while ($row = $result -> fetch_assoc()) {
+			$jsonresult[] = $row;
+		}
+		$result -> free();
+	}
+	$jsonText = json_encode($jsonresult);
+	echo $jsonText;
 }
 
 if ($_REQUEST["method"] == "modifyExample") {
