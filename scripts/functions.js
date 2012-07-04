@@ -32,7 +32,7 @@ function checkSession() {
 		}
 	}).done(function(data) {
 		console.log(data);
-		if(session == "true" && data == "false"){
+		if (session == "true" && data == "false") {
 			endSession();
 		}
 		session = data;
@@ -72,8 +72,8 @@ function getAllExamples() {
 			xhr.overrideMimeType("text/plain; charset=x-user-defined");
 		}
 	}).done(function(data) {
-		responseArray = eval("(" + data + ")");
-		drawExamples(responseArray);
+		jsonArray = $.parseJSON(data);
+		drawExamples(jsonArray);
 	});
 }
 
@@ -93,7 +93,7 @@ function getExample($id, callback) {
 			xhr.overrideMimeType("text/plain; charset=x-user-defined");
 		}
 	}).done(function(data) {
-		jsonArray = eval("(" + data + ")");
+		jsonArray = $.parseJSON(data);
 		callback(jsonArray);
 	});
 }
@@ -114,8 +114,10 @@ function postExample($title, $desc, $imgUrl, $exampleDate) {
 			imgUrl : $imgUrl,
 			exampleDate : $exampleDate
 		}
-	}).done(function() {
-		console.log("Data Saved");
+	}).done(function(data) {
+		jsonArray = $.parseJSON(data);
+		console.log(jsonArray["MAX(ID)"]);
+		drawNewExample(jsonArray[0]["MAX(ID)"], $title, $desc, $imgUrl, $exampleDate);
 	});
 }
 
@@ -201,20 +203,30 @@ function drawExamples(inputData) {
  * @Param id
  * ID of the xample to be redrawn
  */
-function redrawExample($id, $title, $desc, $imgUrl, $exampleDate){
-	$example = $('#example'+$id);
+function redrawExample($id, $title, $desc, $imgUrl, $exampleDate) {
+	$example = $('#example' + $id);
 	$example.children(".exampleTitle").text($title);
 	$example.children(".exampleDate").text($exampleDate);
 	$example.children(".description").text($desc);
 	$example.children(".articleImg").attr('src', $imgUrl);
-	
 }
 
 /*
  * Draw a single example to the page
  */
-function drawNewExample(){
-	
+function drawNewExample($id, $title, $desc, $imgUrl, $exampleDate) {
+	$examples = $('.examples');
+	$article = $('<article id="example' + $id + '">')
+	$examples.append($article);
+	$article.append('<h3 class="exampleTitle">' + $title);
+	$article.append('<div class="exampleDate">' + $exampleDate);
+	if (session == "true") {
+		$article.append('<img src="img/icons/edit.png" class="btnEdit" id="btnEdit' + $id + '" />');
+		$article.append('<img src="img/icons/delete.png" class="btnDelete" id="btnDelete' + $id + '" /><br>');
+	}
+	$article.append('<img src="' + $imgUrl + '" class ="articleImg" alt="articleImg">');
+	$article.append('<p class="description">' + $desc);
+	attachExampleHandlers();
 }
 
 /*
@@ -245,7 +257,7 @@ function getExampleForm(callback, id) {
 	$.ajax({
 		type : "GET",
 		url : "forms/newExample.html",
-		cache: false,
+		cache : false,
 		beforeSend : function(xhr) {
 			xhr.overrideMimeType("text/plain; charset=x-user-defined");
 		}
@@ -286,10 +298,10 @@ function createExampleForm(inputHTML, id) {
  * @param type
  * 0 if you want to add a new example, 1 if you want a modify an existing one
  * @param id
- * id of the article you want to modify, only used if type equals 1. 
+ * id of the article you want to modify, only used if type equals 1.
  */
 function addExampleFormHandler(type, id) {
-	$('#exampleForm').submit(function() {	
+	$('#exampleForm').submit(function() {
 		if (type == "0") {
 			postExample($('#exampleFormTitle').val(), $('#exampleFormDesc').val(), $('#exampleFormImgUrl').val(), $('#exampleFormDate').val());
 			$('#exampleFieldset').append($('<p>Added new example.</p>'));
@@ -303,7 +315,7 @@ function addExampleFormHandler(type, id) {
 }
 
 /*
- * Fills exampleForm with data currently shown on the page when modifying an existing example. 
+ * Fills exampleForm with data currently shown on the page when modifying an existing example.
  * @param ID
  * id of the example for which the data should be retrieved
  */
